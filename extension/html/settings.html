@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style type="text/css">
+    .options .form-group:not(:first-child) label{
+        padding-left: 20px;
+    }
+    .settings{
+        min-height: 500px;
+    }
+</style>
+<body>
+    <div class="container settings">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <br>
+                    <button id="add_website" class="btn btn-primary pull-right">Add website</button>
+                <fieldset class="form-inline">
+                    <legend>Time's up settings</legend>
+                    <br>
+                    <div class="options default">
+                        <div class="form-group">
+                          <label for="website">Website : </label>
+                          <input type="text" class="form-control" id="website" >
+                        </div>
+                        <div class="form-group">
+                          <label for="hours">Hours : </label>
+                          <input type="number" class="form-control" min="0" max="24" id="hours" >
+                        </div>
+                        <div class="form-group">
+                          <label for="minutes">Minutes : </label>
+                          <input type="number" class="form-control" id="minutes" min="0" max="60" >
+                        </div>
+                        <button class="btn btn-danger pull-right" id="remove_website">X</button>
+                        <hr>
+                    </div>
+                </fieldset>
+                    <button id="save" type="sybmit" class="btn btn-success">Save</button>
+                    <div id="status"></div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/thirdParty/jquery.2.2.0.min.js"></script>
+    <script src="../js/options.js"></script>
+    <div class="container" id="footer">
+        <div class="row">
+            <hr>
+            <div class="col-md-12 main">
+            <ul class="nav navbar-nav">
+                <li><a href="https://twitter.com/eissa_soubhi">@eissa_soubhi</a></li>
+                <li><a href="https://github.com/netfox01/Timesup">Github</a></li>
+            </ul>
+                <p class="pull-right copyright">© 2017 Time's up</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
