@@ -1,11 +1,13 @@
     function save_options() {
         var ext_options = [];
-        $(".options:not('.default')").each(function(index, el) {
+        $(".options").each(function(index, el) {
             var website_options = $(this), options = {};
             options.website = website_options.find('#website').val();
             options.hours = website_options.find('#hours').val();
             options.minutes = website_options.find('#minutes').val();
-            ext_options.push(options);
+
+            if(options.website);
+                ext_options.push(options);
         });
         console.log(ext_options)
       chrome.storage.sync.set({
@@ -36,7 +38,9 @@
 
         for(i in ext_options) {
             option = ext_options[i];
-            website = last_website.clone(true, true).show().removeClass('default');
+            website = last_website.clone(true, true).show();
+
+            if (! option.website) continue;
 
             website.find('#website').val(option.website);
             website.find('#hours').val(option.hours);
@@ -50,9 +54,9 @@
 jQuery(document).ready(function($) {
 
     function setDefaultOptions(website_options) {
-        website_options.find('#website').val('www.site.com');
-        website_options.find('#hours').val('0');
-        website_options.find('#minutes').val('30');
+        website_options.find('#website').val('');
+        website_options.find('#hours').val('');
+        website_options.find('#minutes').val('');
         return website_options;
     }
 

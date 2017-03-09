@@ -29,7 +29,7 @@
 
         TimesUp.prototype.timeToMs = function (option) {
             // time to milliseconds
-            return option.hours * 3600000 + option.minutes * 60000;
+            return (option.hours || 0) * 3600000 + (option.minutes || 0) * 60000;
         }
 
         TimesUp.prototype.getLinkInfo = function (link) {
