@@ -2,6 +2,11 @@
 Google chrome extension to keep your internet addiction under control.
 
 # Screenshots
+![chrome://chrome/extensions](screenshots/ext1.JPG "chrome extensions page")
+
+![Time's up](screenshots/ext2.JPG "Time's up")
+
+![Timesup options](screenshots/ext3.JPG "Timesup options")
 
 # Installation
 **install it from source**:
