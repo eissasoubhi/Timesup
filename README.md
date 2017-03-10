@@ -1,5 +1,5 @@
 # TimesUp
-Google chrome extension to keep your internet addiction under control.
+Google chrome extension to control your daily time spent online.
 
 # Screenshots
 ![chrome://chrome/extensions](screenshots/ext1.JPG "chrome extensions page")
