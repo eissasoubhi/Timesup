@@ -9,7 +9,6 @@
             if(options.website);
                 ext_options.push(options);
         });
-        console.log(ext_options)
       chrome.storage.sync.set({
         ext_options: ext_options
       }, function() {
@@ -67,7 +66,11 @@ jQuery(document).ready(function($) {
     });
 
     $('body').on('click', '#remove_website', function(event) {
-        $(this).parents('.options').remove();
+        if ($('.options').length > 1) {
+            $(this).parents('.options').remove();
+        } else {
+            setDefaultOptions($(this).parents('.options'));
+        }
     });
 
     document.getElementById('save').addEventListener('click', save_options);
