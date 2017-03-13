@@ -3,6 +3,7 @@
         function TimesUp () {
             this.timer_interval = 5000;
             this.prefix = 'timesup';
+            this.is_current_tab_active = true;
             var self = this;
             chrome.storage.sync.get({
             ext_options: [],
@@ -10,6 +11,27 @@
                 self.included_websites = self.parseOptions(items.ext_options);
                 self.ready_callback(self, self.included_websites)
             });
+            this.registerEvents();
+        }
+
+        TimesUp.prototype.registerEvents = function () {
+            var self = this;
+            $(window).on("blur focus", function(e) {
+                var prevType = $(this).data("prevType");
+
+                if (prevType != e.type) {   //  reduce double fire issues
+                    switch (e.type) {
+                        case "blur":
+                            self.is_current_tab_active = false;
+                            break;
+                        case "focus":
+                            self.is_current_tab_active = true;
+                            break;
+                    }
+                }
+
+                $(this).data("prevType", e.type);
+            })
         }
 
         TimesUp.prototype.parseOptions = function (ext_options) {
@@ -74,7 +96,6 @@
 
         TimesUp.prototype.timeIsOver = function () {
             var elapsed_time = this.websiteElapsedTime();
-            console.log('elapsed_time', elapsed_time)
             return elapsed_time >= this.websiteMaxTime() ;
         }
 
@@ -103,12 +124,14 @@
         TimesUp.prototype.startTimer = function () {
             var _this = this;
             var timer = setInterval(function () {
+
                     if ( _this.timeIsOver() ) {
                         clearInterval(timer);
                         return timesup.showTimesUpPopup();
                     };
 
-                    _this.setTime(_this.timer_interval)
+                    if (_this.is_current_tab_active)
+                        _this.setTime(_this.timer_interval)
 
                 }, this.timer_interval)
         }
@@ -174,4 +197,5 @@
         }
 
         window.TimesUp = TimesUp;
+
     });
